@@ -320,8 +320,9 @@ export default {
     }
   },
   beforeDestroy(){
+    let self = this
     events.forEach((eventName) => {
-      this.owl.off(`${eventName}.owl.carousel`);
+      self.owl.off(`${eventName}.owl.carousel`);
     });
   },
   methods: {
