@@ -222,7 +222,7 @@ export default {
     return {
       showPrev: false,
       showNext: true,
-
+      owl:{},
       prevHandler: 'carousel_prev_' + this.generateUniqueId(),
       elementHandle: 'carousel_' + this.generateUniqueId(),
       nextHandler: 'carousel_next_' + this.generateUniqueId(),
@@ -281,7 +281,10 @@ export default {
       dotsContainer: this.dotsContainer,
       checkVisible: this.checkVisible,
     });
-
+    
+    // efishocean 20190520
+    this.owl = owl;
+    
     $('#' + this.prevHandler).click(function() {
       owl.trigger('prev.owl.carousel');
     });
@@ -316,7 +319,11 @@ export default {
       });
     }
   },
-
+  beforeDestroy(){
+    events.forEach((eventName) => {
+      owl.off(`${eventName}.owl.carousel`);
+    });
+  },
   methods: {
     generateUniqueId() {
       return Math.random().toString(36).substring(2, 15);
