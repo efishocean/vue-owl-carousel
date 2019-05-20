@@ -321,7 +321,7 @@ export default {
   },
   beforeDestroy(){
     events.forEach((eventName) => {
-      owl.off(`${eventName}.owl.carousel`);
+      this.owl.off(`${eventName}.owl.carousel`);
     });
   },
   methods: {
